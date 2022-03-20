@@ -7,7 +7,7 @@ import logger from 'utilities/logger';
 
 chai.use(chaiHttp);
 describe('Test Display error utils ', () => {
-  it('return server error if the error is not part of the identified error',
+  it('return  error if the error error is thrown',
     () => {
       sinon.restore();
       sinon.stub(ServerResponses, 'response').returns(null);

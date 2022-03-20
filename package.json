@@ -4,7 +4,7 @@
   "description": "simple node js starter template",
   "main": "src/index.js",
   "scripts": {
-    "start": " && npm run build && npm run serve",
+    "start": "npm run build && npm run serve",
     "serve": "node ./dist/index.js",
     "build": "rm -rf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules",
     "test": "export NODE_ENV=test && nyc --reporter=text --reporter=lcov mocha -r dotenv/config -r @babel/register tests/**/*.spec.js --timeout=30000 --exit --recursive",
