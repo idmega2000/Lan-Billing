@@ -4,7 +4,7 @@ import ServerResponses from 'utilities/ServerResponses';
 
 const router = Router();
 
-router.get('/', (req, res) => ServerResponses.successDataOk(
+router.get('/', (req, res) => ServerResponses.response(
   res, { message: 'welcome to lan billing' }
 ));
 
