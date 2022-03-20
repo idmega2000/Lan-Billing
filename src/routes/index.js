@@ -1,13 +1,17 @@
+import FeeConfigController from 'controllers/FeeConfigController';
 import { Router } from 'express';
-
-// v1 Routes
-import v1Router from './api/v1';
+import ServerResponses from 'utilities/ServerResponses';
 
 const router = Router();
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Welcome to app' });
-});
-router.use(v1Router);
+
+router.get('/', (req, res) => ServerResponses.successDataOk(
+  res, { message: 'welcome to lan billing' }
+));
+
+// add billing config fee
+router.post('/fees', FeeConfigController.addFeeConfig);
+
+// compute transaction billing fee
+router.post('/compute-transaction-fee', FeeConfigController.conputeBillingConfig);
 
 export default router;

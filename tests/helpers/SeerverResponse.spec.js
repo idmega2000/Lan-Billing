@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import ServerResponses from 'helpers/ServerResponses';
+import ServerResponses from 'utilities/ServerResponses';
 import sinon, { stub, spy } from 'sinon';
 
 describe('Server response Helper function', () => {
@@ -20,7 +20,7 @@ describe('Server response Helper function', () => {
     const req = { body: stub(), headers: stub(), userProcessor: stub() };
     const res = { json, status, req };
     status.returns(res);
-    await ServerResponses.appError(res, 'hello');
+    await ServerResponses.response(res, 'hello');
     expect(res.status.called).to.be.true;
     expect(status.calledWith(400)).to.be.true;
   });
