@@ -5,7 +5,7 @@ export const RESPONSE_MESSAGE = {
   OK: 'ok',
   NO_FEE_DATA: 'FeeConfigurationSpec is required.',
   NO_TRANSACTION_DATA: 'FeeConfigurationSpec is required.',
-  NO_FEE_COMFIG_FOUND: 'No fee configuration for this transactions.',
+  NO_FEE_COMFIG_FOUND: 'No fee configuration found for this transaction.',
   INVALID_ENTITY_FEE: 'entity fee is invalid.',
 };
 
