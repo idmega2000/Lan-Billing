@@ -1,0 +1,4 @@
+  PORT= 9700,
+  DATABASE_URL=,
+  NODE_ENV=development
+  MAX_FILE_SIZE= 5mb

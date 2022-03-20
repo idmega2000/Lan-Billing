@@ -1,7 +1,7 @@
-import logger from 'helpers/logger';
+import logger from 'utilities/logger';
 import APIException from './APIException';
 import { RESPONSE_MESSAGE } from './Constants';
-import ServerResponses from '../helpers/ServerResponses';
+import ServerResponses from './ServerResponses';
 
 /**
      * @description the app ues a general global exception handler
@@ -13,11 +13,12 @@ import ServerResponses from '../helpers/ServerResponses';
      */
 export const generalErrorHandler = (err, req, res, next) => {
   const {
-    errors, responseCode, name
+    name,
   } = err;
-  let { message } = err;
+  let { message, statusCode } = err;
   switch (name) {
   case 'ValidationError':
+    // statusCode = 400;
     break;
 
   case ('SyntaxError'):
@@ -27,10 +28,12 @@ export const generalErrorHandler = (err, req, res, next) => {
 
   default:
     // server errors
+    statusCode = 500;
     message = RESPONSE_MESSAGE.SOMETHING_WENT_WRONT;
   }
   logger.error(err);
-  return ServerResponses.appError(res, message, errors, responseCode);
+  console.log(err);
+  return ServerResponses.response(res, { Error: message }, statusCode);
 };
 
 /**
