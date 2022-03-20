@@ -7,7 +7,7 @@ class ServerResponses {
   /**
    * @description - for success ok
    * @param {object} res the response object
-   * @param {String} responseData the response data object
+   * @param {object} responseData the response data object
    * @param {String} statusCode the status code of the response
    * @returns {object} returns response object with the necessary info
    */

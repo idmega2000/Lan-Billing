@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import ServerResponses from 'utilities/ServerResponses';
 import sinon, { stub, spy } from 'sinon';
+import { RESPONSE_MESSAGE } from 'utilities/Constants';
 
 describe('Server response Helper function', () => {
   afterEach(() => sinon.restore());
@@ -10,7 +11,7 @@ describe('Server response Helper function', () => {
     const req = { body: stub(), headers: stub(), userProcessor: stub() };
     const res = { json, status, req };
     status.returns(res);
-    await ServerResponses.successOk(res, 'hello', {});
+    await ServerResponses.response(res, { status: RESPONSE_MESSAGE.OK });
     expect(res.status.called).to.be.true;
     expect(status.calledWith(200)).to.be.true;
   });
@@ -20,7 +21,7 @@ describe('Server response Helper function', () => {
     const req = { body: stub(), headers: stub(), userProcessor: stub() };
     const res = { json, status, req };
     status.returns(res);
-    await ServerResponses.response(res, 'hello');
+    await ServerResponses.response(res, { Error: RESPONSE_MESSAGE.NO_FEE_DATA }, 400);
     expect(res.status.called).to.be.true;
     expect(status.calledWith(400)).to.be.true;
   });

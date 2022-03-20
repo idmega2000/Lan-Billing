@@ -1,5 +1,5 @@
 import {
-  FEE_TYPE, LOCALE, PRECEDENCE_MARKER,
+  FEE_TYPE, LOCALE, PRECEDENCE_MARKER, SUPPORTED_ENTITY_FEE,
 } from 'utilities/Constants';
 
 /**
@@ -9,7 +9,7 @@ import {
  */
 class FeeConfigHelper {
   /**
-     * @description get the local of the transaction
+     * @description get the locale of the transaction
      * @param {string} country - the country of the transaction
      * @param {string} currencyCountry - the country of the currency
      * @returns {string} the locale
@@ -20,31 +20,41 @@ class FeeConfigHelper {
 
   /**
      * @description get the right fee config
-     * @param {Array} feeData - the fee config data gotten from db
+     * @param {Array} feeConfigData - the fee config data gotten from db
      * @returns {object} object of the right fee config
      */
-  static getRightFeeConfig(feeData) {
-    let highestPredenceCount = 0;
+  static getRightFeeConfig(feeConfigData) {
+    // asterisk count tracker
+    let highestAsteriskCount = 0;
+
+    // variable to track the the index of the right fee config to use
     let precedenceIndex = 0;
-    feeData.map((feeConfig, index) => {
-      let precedenceCount = 0;
+    // loop through the fee data array
+    feeConfigData.map((feeConfig, index) => {
+      let asteriskCount = 0;
       const {
         currency, locale, feeEntity, entityProperty
       } = feeConfig;
 
-      // count the number of precedence
-      precedenceCount += currency !== PRECEDENCE_MARKER && 1;
-      precedenceCount += locale !== PRECEDENCE_MARKER && 1;
-      precedenceCount += feeEntity !== PRECEDENCE_MARKER && 1;
-      precedenceCount += entityProperty !== PRECEDENCE_MARKER && 1;
+      // count the number of asterisk
+      asteriskCount += currency !== PRECEDENCE_MARKER && 1;
+      asteriskCount += locale !== PRECEDENCE_MARKER && 1;
+      asteriskCount += feeEntity !== PRECEDENCE_MARKER && 1;
+      asteriskCount += entityProperty !== PRECEDENCE_MARKER && 1;
 
-      if (precedenceCount > highestPredenceCount) {
-        highestPredenceCount = precedenceCount;
+      // check that asterisk count is greater than the current
+      // asterisk count tracker
+      if (asteriskCount > highestAsteriskCount) {
+        highestAsteriskCount = asteriskCount;
+
+        // set this index as the right index
         precedenceIndex = index;
       }
     });
 
-    return feeData[precedenceIndex];
+    // Note that the implementation only account for the count of asterisk as the precedence
+    // without giving precedence to any keyword in the data.(keep it simple and clean)
+    return feeConfigData[precedenceIndex];
   }
 
   /**
@@ -89,6 +99,15 @@ class FeeConfigHelper {
      */
   static generateData(data) {
     return [data, '*'];
+  }
+
+  /**
+     * @description check if entity type is valid
+     * @param {string} feeType - the business name of the company
+     * @returns {boolean} boolean value
+     */
+  static isValidFeeEntity(feeType) {
+    return SUPPORTED_ENTITY_FEE.includes(feeType);
   }
 
   /**

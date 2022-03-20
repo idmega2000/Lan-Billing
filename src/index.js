@@ -13,11 +13,6 @@ const corsOptions = {
   methods: 'GET,PUT,PATCH,POST,DELETE',
 };
 
-// connect to database
-// mongooseConnect().then(() => {
-//   console.log(`connected to db`)
-// }).catch((err) =>
-//  console.log('could not connect to db', err.message));
 mongooseConnect();
 
 app.use(cors(corsOptions));

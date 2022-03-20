@@ -3,8 +3,10 @@ export const RESPONSE_MESSAGE = {
   NOT_FOUND: 'route does not exist.',
   INVALID_JSON: 'invalid JSON payload passed.',
   OK: 'ok',
-  NO_DATA: 'FeeConfigurationSpec is required',
-  NO_FEE_COMFIG_FOUND: 'No fee configuration for USD transactions.',
+  NO_FEE_DATA: 'FeeConfigurationSpec is required.',
+  NO_TRANSACTION_DATA: 'FeeConfigurationSpec is required.',
+  NO_FEE_COMFIG_FOUND: 'No fee configuration found for this transaction.',
+  INVALID_ENTITY_FEE: 'entity fee is invalid.',
 };
 
 export const LOCALE = {
@@ -17,5 +19,7 @@ export const FEE_TYPE = {
   PERC: 'PERC',
   FLAT_PERC: 'FLAT_PERC',
 };
+
+export const SUPPORTED_ENTITY_FEE = ['CREDIT-CARD', 'DEBIT-CARD', 'BANK-ACCOUNT', 'USSD', 'WALLET-ID', '*'];
 
 export const PRECEDENCE_MARKER = '*';
