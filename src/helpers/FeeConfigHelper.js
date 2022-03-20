@@ -9,7 +9,7 @@ import {
  */
 class FeeConfigHelper {
   /**
-     * @description get the local of the transaction
+     * @description get the locale of the transaction
      * @param {string} country - the country of the transaction
      * @param {string} currencyCountry - the country of the currency
      * @returns {string} the locale
