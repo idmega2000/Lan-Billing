@@ -2,7 +2,7 @@
 A billing service to get the transaction billing infomation
 
 
-Visit App [Here](http://143.244.179.38/lanister) 
+Visit App [Here]
 
 |  Functionality     |Http Request   | Api endpoints    |
 |  -------------     | ------------- | ---------------- |
