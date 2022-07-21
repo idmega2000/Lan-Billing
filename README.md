@@ -10,11 +10,11 @@ Visit App [Here]
 | Get billing fees | POST           | /compute-transaction-fee        |
 
 
+
 # Notes
 
 - The app uses absolute imports.
 - The app also uses global exception error handling.
-- All logic exceptions are thrown in service files(good practive for easy maintanance).
 
 # Setup Project
 To setup project
@@ -22,7 +22,7 @@ To setup project
 - run npm install
 - set up the environment variable copy and update frome envsample
 - start the app on dev with `npm run dev`
-
+- sample localhost url `http://localhost:5001/api/v1/patients?longitude=-63.1150&latitude=46.7110`
 
 To run test
 - run the test with `npm run test`
